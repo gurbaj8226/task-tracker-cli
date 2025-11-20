@@ -19,7 +19,21 @@ A clean, testable CLI for tracking tasks, with **file-based persistence**, built
 - Git
 
 ##Run
+--- TASK TRACKER ---
+1. Add Task
+2. View Tasks
+3. Mark Complete
+4. Delete
+5. Exit
+Choose option: 1
 
+Title: "Finish arrays hashing"
+
+Priority: Low
+
+Date: 10/17/25
+
+Task Added!
  
 
 
