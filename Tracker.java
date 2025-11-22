@@ -1,4 +1,8 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Tracker {
@@ -74,4 +78,35 @@ public class Tracker {
 				t.setStatus(newStatus);
 			}
 		}
+		public static void sortByPriority() {
+			Collections.sort(tasks, (a,b) -> {
+				return priorityValue(a) - priorityValue(b);
+			});
+		}
+		public static int priorityValue(Task t) {
+			if(t.getPriority().startsWith("High")) {
+				return 1;
+			}
+			if(t.getPriority().startsWith("Med")) {
+				return 2;
+			}
+			return 3;
+		}
+		public static void sortByStatus() {
+			Collections.sort(tasks, (a,b) ->{
+				return Boolean.compare(a.isStatus(), b.isStatus());
+			});
+		}
+		public static void sortByDate() {
+			Collections.sort(tasks, (a,b) -> {
+				return parseDate(a).compareTo(parseDate(b));
+			});
+		}
+		public static LocalDate parseDate(Task t) {
+			try {
+			return LocalDate.parse(t.getDate());
+		} catch (DateTimeParseException e) {
+			return LocalDate.MAX;
+		}
 	}
+}
