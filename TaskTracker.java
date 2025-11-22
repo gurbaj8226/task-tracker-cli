@@ -11,18 +11,19 @@ public class TaskTracker {
 			System.out.print("\n3. Mark Complete");
 			System.out.print("\n4. Delete");
 			System.out.print("\n5. Update Task");
-			System.out.print("\n6. Exit");
+			System.out.print("\n6. Sort Tasks");
+			System.out.print("\n7. Exit");
 			Scanner in = new Scanner(System.in);
 			System.out.print("\nChoose option: ");
 			int choice = in.nextInt();
 			in.nextLine();
 			switch (choice) {
 			case 1:
-				System.out.print("Title: ");
+				System.out.print("Enter Title: ");
 				String title = in.nextLine();
-				System.out.print("Priority: ");
+				System.out.print("Enter Priority (High, Medium, Low): ");
 				String Priority = in.nextLine();
-				System.out.print("Date: ");
+				System.out.print("Enter Date (YYYY-MM-DD): ");
 				String date = in.nextLine();
 				Tracker.addTask(title, Priority, date, false);
 				FileStorage.saveLines(Tracker.toLines());
@@ -66,6 +67,30 @@ public class TaskTracker {
 				FileStorage.saveLines(Tracker.toLines());
 				break;
 			case 6:
+				System.out.println("Pick Method of Sortation: ");
+				System.out.println("1. Sort By Priority");
+				System.out.println("2. Sort By Date");
+				System.out.println("3. Sort By Status");
+				int c = in.nextInt();
+				in.nextLine();
+				switch(c) {
+				case 1:
+					Tracker.sortByPriority();
+					break;
+				case 2: 
+					Tracker.sortByDate();
+					break;
+				case 3:
+					Tracker.sortByStatus();
+					break;
+				default:
+					System.out.println("Invalid Option!");
+				}
+				System.out.println("Tasks have Been Sorted!");
+				Tracker.viewTasks();
+				FileStorage.saveLines(Tracker.toLines());
+				break;
+			case 7:
 				FileStorage.saveLines(Tracker.toLines());
 				System.out.println("Goodbye!");
 				in.close();
