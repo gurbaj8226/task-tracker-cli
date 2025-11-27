@@ -1,19 +1,41 @@
 public class Task {
-	String title;
-	String Priority;
-	String date;
-	boolean status;
+	private int id;
+	private String title;
+	private int priority;
+	private String date;
+	private boolean status;
 
-	public Task(String title, String Priority, String date, boolean status) {
+	public Task(int id, String title, int priority, String date, boolean status) {
+		this.id = id;
 		this.title = title;
-		this.Priority = Priority;
+		this.priority = priority;
 		this.date = date;
 		this.status = status;
 
 	}
-	
-	public String getInfo() {
-		return title + " | " + Priority + " | " + date + " | " + (status ? "Complete" : "Incomplete");
+	public Task(String title, int priority, String date, boolean status) {
+		this.title = title;
+		this.priority = priority;
+		this.date = date;
+		this.status = status;
+
+	}
+	private String priorityLabel() {
+		return switch(priority) {
+		case 1 -> "High";
+		case 2 -> "Medium";
+		case 3 -> "Low";
+		default -> "Unknown";
+		};
+	}
+	public int getID() {
+		return id;
+	}
+	public void setID(int id) {
+		this.id = id;
+	}
+	public String toString() {
+		return id + ". " + title + " | " + priorityLabel() + " | " + date + " | " + (status ? "Complete" : "Incomplete");
 	}
 	/**
 	 * @return the title
@@ -32,15 +54,15 @@ public class Task {
 	/**
 	 * @return the priority
 	 */
-	public String getPriority() {
-		return Priority;
+	public int getPriority() {
+		return priority;
 	}
 
 	/**
 	 * @param priority the priority to set
 	 */
-	public void setPriority(String priority) {
-		Priority = priority;
+	public void setPriority(int priority) {
+		this.priority = priority;
 	}
 
 	/**

@@ -1,0 +1,16 @@
+# Ignore compiled classes
+*.class
+
+# Ignore Eclipse metadata
+/.settings/
+/bin/
+/target/
+.classpath
+.project
+
+# Ignore your DB password file
+db.properties
+
+# Ignore OS junk
+.DS_Store
+Thumbs.db
